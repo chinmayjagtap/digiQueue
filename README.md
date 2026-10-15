@@ -85,9 +85,11 @@ These create uniquely named fictional test customers/staff and clean up their re
 1. Push this project to your own GitHub repository, excluding all private files.
 2. In Render, create a **Blueprint** from that repository using `render.yaml`, or create one Node web service manually.
 3. Set `DATABASE_URL` to the Neon pooled URL. The Blueprint generates `SESSION_SECRET` automatically and sets `NODE_ENV=production`, `OTP_MODE=demo` and Node.js 24.
-4. Build command: `npm ci && npm run build`.
+4. Build command: `npm ci --include=dev && npm run build`.
 5. Start command: `npm run db:migrate && npm start`.
 6. Health-check path: `/api/health`.
+
+The build must include development dependencies even with `NODE_ENV=production`: TypeScript, Vite and React type declarations are required during compilation. For a manually created Render service, update its Build Command in the dashboard; changing `render.yaml` only configures Blueprint-managed services.
 
 Seed once locally against the same Neon database before demonstrating; Render does not automatically recreate or reset staff credentials. The existing local seed therefore works on the deployment as well. On a new database, run the seed separately with a secure `STAFF_PASSWORD`, or use the local generated credentials file.
 
