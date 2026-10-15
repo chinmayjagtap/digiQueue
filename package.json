@@ -1,0 +1,35 @@
+{
+  "name": "digiqueue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node --watch --watch-path=server server/index.js",
+    "build": "tsc --noEmit && vite build",
+    "start": "node server/index.js",
+    "db:migrate": "node server/migrate.js",
+    "db:seed": "node server/seed.js",
+    "test": "node --test tests/*.test.js",
+    "test:integration": "RUN_DB_TESTS=1 node --test tests/api.test.js",
+    "check": "node --check server/index.js && node --check server/seed.js && node --check server/migrate.js && tsc --noEmit"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}
